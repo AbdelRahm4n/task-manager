@@ -1,0 +1,199 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 1. Document Class
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper,12pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 2. Packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{graphicx} 
+\usepackage{setspace}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{bbding}
+\usepackage{xfrac}
+\usepackage{datetime2}
+\usepackage[absolute]{textpos}
+\setlength{\parindent}{0in}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage[french]{babel}
+
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+
+
+\lstloadlanguages{Haskell}
+
+% Define the style
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+
+% Set the style and language
+\lstset{style=mystyle, language=Haskell}
+\lstset{
+    inputencoding=utf8,
+    extendedchars=true,
+    literate={é}{{\'e}}1 {è}{{\`e}}1 {ê}{{\^e}}1 {à}{{\`a}}1 {â}{{\^a}}1 {û}{{\^u}}1 {ë}{{\"e}}1,
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 3. Header (and Footer)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\footnotesize IFT 3225}
+\chead{\footnotesize Abdel Rahman Ibrahim, Hervé Ng'isse}
+\rhead{\today}
+\cfoot{\footnotesize \thepage} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 4. Your document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Technologies de l'Internet - IFT 3225}\\
+Université de Montréal \\ Session : Été 2024\\ Abdel Rahman Ibrahim (20260406) \\ Hervé Ng'isse (20204609)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 4.1 Today's date
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{textblock*}{5cm}(18.3cm,0.75cm)
+   \today
+\end{textblock*} \\
+\hline
+\end{tabular}
+
+\vspace*{0.3cm}
+
+\begin{center}
+	{\Large \bf \underline{Rapport du travail pratique \#2}}
+	\vspace{1mm}
+\end{center}  
+
+\section{Introduction}
+
+
+Ce rapport détaille la répartition du travail lors de la réalisation du TP2.
+Nous avons conçu une application MERN qui sert de gestionnaire de tâches 
+se présentant sous la forme d'un ensemble de tuiles que l'utilisateur peut ajouter.
+Chaque tuile (tâche) put être modifiée, supprimée, marquée 
+comme complétée/non complétée/importante et/ou publique. 
+\\ \\
+Des fonctionalités de recherche, de filtrage et de pagination sont également disponibles.
+
+
+\section{Routes de l'API REST}
+
+\begin{itemize}
+    \item \texttt{POST /sign-up} : Crée un nouvel utilisateur.
+    \item \texttt{GET /log-in} : Connecte un utilisateur.
+    \item \texttt{POST /create-task} : Ajoute une nouvelle tâche.
+    \item \texttt{GET /get-all-tasks} : Récupère toutes les tâches (non publiques).
+    \item \texttt{GET /get-public-tasks} : Récupère toutes les tâches publiques.
+    \item \texttt{GET /get-imp-tasks} : Récupère toutes les tâches importantes.
+    \item \texttt{GET /get-cmp-tasks} : Récupère toutes les tâches complètes.
+    \item \texttt{GET /get-incmp-tasks} : Récupère toutes les tâches incomplètes.
+    \item \texttt{GET /search-tasks} : Recherche des tâches privées.
+    \item \texttt{GET /search-public-tasks} : Recherche des tâches publiques.
+    \item \texttt{DELETE /delete-task/:id} : Supprime une tâche.
+    \item \texttt{PUT /update-task/:id} : Met à jour une tâche.
+    \item \texttt{PUT /update-imp-task/:id} : Met à jour l'importance d'une tâche.
+    \item \texttt{PUT /update-cmp-task/:id} : Met à jour le statut de complétion d'une tâche.
+    \item \texttt{PUT /update-public-task/:id} : Met à jour la visibilité publique d'une tâche.
+\end{itemize}
+
+\newpage
+
+\section{Répartition du travail}
+
+\begin{itemize}
+    \item \textbf{Abdel Rahman Ibrahim} : 
+    \begin{itemize}
+        \item \texttt{backend}
+            \begin{itemize}
+                \item Implémentation de la base de données.
+                \item Implémentation de la moitié des routes de l'API REST.
+            \end{itemize}
+        \item \texttt{frontend}
+            \begin{itemize}
+                \item Contribution à l'interface utilisateur.
+                \item connexion, déconnexion, inscription, 
+                \item ajout de tâches, recherche, filtrage, recherche.
+            \end{itemize}
+        \item 
+        
+    \end{itemize}
+    \item \textbf{Hervé Ng'isse} : 
+    \begin{itemize}
+        \item \texttt{backend}
+            \begin{itemize}
+                \item Authentification et autorisation.
+                \item Implémentation de l'autre moitié des routes de l'API REST.
+            \end{itemize}
+        \item \texttt{frontend}
+            \begin{itemize}
+                \item Contribution à l'interface utilisateur.
+                \item Connexion, déconnexion, inscription, 
+                \item Suppression de tâches, mise à jour de tâches, pagination.
+            \end{itemize}
+        \item 
+        \end{itemize}
+\end{itemize}
+
+\section{Comment démarrer l'application}
+
+\begin{itemize}
+    \item \texttt{cd backend}
+    \item \texttt{npm start}
+    \item \texttt{cd frontend}
+    \item \texttt{npm start}
+\end{itemize}
+
+
+\end{document}
